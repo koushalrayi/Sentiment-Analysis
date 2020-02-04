@@ -1,0 +1,14 @@
+install.packages('pdftools')
+library(pdftools)
+library(tm)
+library(syuzhet)
+library(wordcloud)
+
+
+text = pdf_text(choose.files())
+text
+corpus = Corpus(VectorSource(text))
+wordcloud(corpus, colors = rainbow(7), max.words = 50)
+sentences = get_sentences(text)
+sent.value = get_sentiment(sentences)
+simple_plot(sent.value)
